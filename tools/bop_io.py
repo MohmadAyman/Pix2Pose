@@ -44,6 +44,7 @@ def get_model_params(model_param):
 
 def get_dataset(cfg,dataset,train=True,incl_param=False,eval=False,eval_model=False):
     #return serialized datset information
+    print(dataset)
     bop_dir = cfg['dataset_dir']
     if eval_model:
         postfix_model = '_eval'

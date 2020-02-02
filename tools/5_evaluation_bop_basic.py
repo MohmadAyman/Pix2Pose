@@ -314,8 +314,14 @@ for scene_id,im_id,obj_id_targets,inst_counts in target_list:
 
         obj_order_id = obj_orders[r_id]
         obj_pix2pose[obj_order_id].camK=cam_K.reshape(3,3)                
+
         img_pred,mask_pred,rot_pred,tra_pred,frac_inlier,bbox_t =\
         obj_pix2pose[obj_order_id].est_pose(image_t,roi.astype(np.int))            
+
+        
+        # Show the image
+        plt.imshow(img_pred)
+
         if(frac_inlier==-1):
             continue        
         if(score_type==2 and detect_type=='rcnn'):       
