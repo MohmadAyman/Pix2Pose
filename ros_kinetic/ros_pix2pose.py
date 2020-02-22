@@ -1,11 +1,12 @@
 '''
 Author:Kiru Park (park@acin.tuwien.ac.at, kirumang@gmail.com)
 '''
-
+#!/usr/bin/env_python
 import os,sys
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import numpy as np
 import yaml
+sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
 import cv2
 from matplotlib import pyplot as plt
 
@@ -48,6 +49,7 @@ import argparse
 import time
 import transforms3d as tf3d
 
+sys.path.append('/opt/ros/kinetic/lib/python2.7/dist-packages')
 import rospy
 import ros_numpy
 from sensor_msgs.msg import PointCloud2 as pc2
@@ -105,7 +107,7 @@ class pix2pose():
             self.model_scale = cfg['model_scale']
             for t_id,target_obj in enumerate(self.target_objs):                
                 if(self.backbone=='resnet50'):
-                    weight_fn = os.path.join(pix2pose_dir,"{:02d}/inference_resnet_model.hdf5".format(target_obj))
+                    weight_fn = os.path.join(pix2pose_dir,"{:02d}/inference_resnet50.hdf5".format(target_obj))
                 else:
                     weight_fn = os.path.join(pix2pose_dir,"{:02d}/inference.hdf5".format(target_obj))
                 print("Load pix2pose weights from ",weight_fn)
