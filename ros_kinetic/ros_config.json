@@ -10,14 +10,14 @@
     "norm_factor_fn":"/home/tiago_admin/wrs/ycbv_resnet/norm_factor.json",
     "n_objs":21,
     "obj_labels":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],
-    "target_obj_name":[4],
-    "icp":0,
+    "target_obj_name":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],
+    "icp":1,
     "model_dir":"/home/tiago_admin/wrs/ycbv_resnet/ycbv/models/",
     "ply_files":["obj_000001.ply", "obj_000002.ply", "obj_000003.ply", "obj_000004.ply", "obj_000005.ply","obj_000006.ply", "obj_000007.ply", "obj_000008.ply", "obj_000009.ply", "obj_000010.ply", "obj_000011.ply", "obj_000012.ply", "obj_000012.ply", "obj_000013.ply", "obj_000014.ply", "obj_000015.ply", "obj_000016.ply", "obj_000017.ply", "obj_000018.ply", "obj_000019.ply", "obj_000020.ply", "obj_000021.ply"],
     "model_scale":0.001,
     "rgb_topic":"/hsrb/head_rgbd_sensor/rgb/image_rect_color",
     "depth_topic":"/hsrb/head_rgbd_sensor/depth_registered/image_rect_raw",
-    "cam_K":[538.391033533567, 0.0, 315.3074696331638, 0.0, 538.085452058436, 233.0483557773859, 0.0, 0.0, 1.0],
+    "cam_K":[569.8283037644665, 0, 322.7751444492567, 0, 570.4683437626238, 240.5925536668499, 0, 0, 1.0],
     "im_height":480,
     "im_width":640
   }

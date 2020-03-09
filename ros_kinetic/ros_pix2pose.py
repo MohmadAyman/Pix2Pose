@@ -14,6 +14,8 @@ from matplotlib import pyplot as plt
 import keras
 import tensorflow as tf_backend
 
+# from tf_backend import set_session
+
 ROOT_DIR = os.path.abspath(".")
 sys.path.append(ROOT_DIR)  # To find local version of the library
 sys.path.append("./bop_toolkit")
@@ -81,8 +83,9 @@ class pix2pose():
         n_objs  = int(cfg['n_objs'])
         self.target_objs = cfg['target_obj_name']
         self.colors= np.random.randint(0,255,(n_objs,3))
-        
-        with self.graph.as_default():        
+        session = tf_backend.Session(graph=tf_backend.Graph())
+        with self.graph.as_default():
+            # tf_backend.compat.v1.keras.backend.set_session(session)        
             if(detect_type=="rcnn"):
                 #Load mask r_cnn
                 '''
@@ -254,7 +257,8 @@ class pix2pose():
                         max_dim=self.config.IMAGE_MAX_DIM,
                         mode=self.config.IMAGE_RESIZE_MODE)
         if(scale!=1):
-            print("Warning.. have to adjust the scale")        
+            print("Warning.. have to adjust the scale")
+        print('resized image ', image_t_resized.shape)
         results = self.detection_model.detect([image_t_resized], verbose=0)
         r = results[0]
         rois = r['rois']
@@ -299,8 +303,12 @@ class pix2pose():
                     points_tgt[:,:,3:] = get_normal(depth_t,fx=self.camK[0,0],fy=self.camK[1,1],cx=self.camK[0,2],cy=self.camK[1,2],refine=True)
             data = ros_numpy.numpify(r_image)        
             image=np.copy(data)
+            print(len(image))
+            print(image[0])
+            # print(image.shape())
             bbox_pred = np.zeros((4),np.int)
-            rois,obj_orders,obj_ids,scores,masks= self.get_rcnn_detection(image)
+            # image = np.array(cv2.imread('/home/tiago_admin/wrs/maxresdefault.jpg'))
+            rois,obj_orders,obj_ids,scores,masks = self.get_rcnn_detection(image)
             result_scores=[]
             result_poses=[]
             result_poses_before=[]
